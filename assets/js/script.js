@@ -3,12 +3,6 @@
 // in the html.
 $(function () {
 
-  $("button.saveBtn").click(function() {
-    var hourID = $(this).parent().attr("id");
-    var textAreaValue = $(this).prev().val();
-    localStorage.setItem(hourID, textAreaValue);
-  })
-
   function colorTimeBlocks() {
     var timeBlocks = $("div.time-block");
     var timeBlocksPast = timeBlocks.filter(function() {
@@ -26,11 +20,21 @@ $(function () {
     timeBlocksFuture.addClass("future").removeClass("present").removeClass("past");
   }
 
-  colorTimeBlocks();
+  $("div.time-block").each(function() {
+      var hourKey = $(this).attr("id");
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-
+      if (localStorage.getItem(hourKey) !== null) {
+        $(this).children("textarea").val(localStorage.getItem(hourKey))
+      }
+    })
+  
   $("#currentDay").text(dayjs().format("dddd, MMMM D"));
+
+  colorTimeBlocks();
+  
+  $("button.saveBtn").click(function() {
+    var hourID = $(this).parent().attr("id");
+    var textAreaValue = $(this).prev().val();
+    localStorage.setItem(hourID, textAreaValue);
+  })
 });
