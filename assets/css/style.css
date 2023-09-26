@@ -49,16 +49,19 @@ textarea {
   border-top: 1px dashed #000000;
 }
 
+/* Class for hours that have already past to be applied dynamically */
 .past {
   background-color: #d3d3d3;
   color: white;
 }
 
+/* Class for current hour to be applied dynamically */
 .present {
   background-color: #ff6961;
   color: white;
 }
 
+/* Class for hours that have not arrived to be applied dynamically */
 .future {
   background-color: #77dd77;
   color: white;
