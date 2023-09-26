@@ -3,6 +3,25 @@ body {
   font-size: 16px;
 }
 
+#addedMessageContainer {
+  text-align: center;
+  width: 100%;
+  display: none;
+}
+
+#addedMessage {
+  display: inline;
+}
+
+pre {
+  color: red;
+  display: inline;
+}
+
+#checkmark {
+  display: inline;
+}
+
 textarea {
   background: transparent;
   border: none;

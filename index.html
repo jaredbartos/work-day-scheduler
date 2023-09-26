@@ -31,6 +31,11 @@
       <p id="currentDay" class="lead"></p>
     </header>
     <div class="container-fluid px-5 border-top border-dark border-5 mt-0">
+      <!-- Message displayed only after saving a schedule entry -->
+      <div id="addedMessageContainer">
+        <p id="addedMessage">Appointment Added to </p><pre>localStorage</pre><p id="checkmark"> &checkmark;</p>
+      </div>
+      
       <div id="hour-9" class="row time-block">
         <div class="col-2 col-md-1 hour text-center py-3">9AM</div>
         <textarea class="col-8 col-md-10 description" rows="3"> </textarea>

@@ -3,7 +3,7 @@
 // in the html.
 $(function () {
 
-  function colorTimeBlocks() {
+  var colorTimeBlocks = function() {
     var timeBlocks = $("div.time-block");
     var timeBlocksPast = timeBlocks.filter(function() {
       return Number($(this).attr("id").substring(5)) < dayjs().hour();
@@ -19,6 +19,19 @@ $(function () {
     timeBlocksPresent.addClass("present").removeClass("past").removeClass("future");
     timeBlocksFuture.addClass("future").removeClass("present").removeClass("past");
   }
+  
+  var displayConfirmation = function() {
+    var messageTimer = 4
+    var messageInterval = setInterval(function() {
+      if (messageTimer > 0) {
+        $("#addedMessageContainer").attr("style", "display: block")
+        messageTimer -= 0.1;
+      } else {
+        clearInterval(messageInterval);
+        $("#addedMessageContainer").attr("style", "display: none");
+      }
+    }, 100)
+  }
 
   $("div.time-block").each(function() {
       var hourKey = $(this).attr("id");
@@ -31,10 +44,11 @@ $(function () {
   $("#currentDay").text(dayjs().format("dddd, MMMM D"));
 
   colorTimeBlocks();
-  
+
   $("button.saveBtn").click(function() {
     var hourID = $(this).parent().attr("id");
     var textAreaValue = $(this).prev().val();
     localStorage.setItem(hourID, textAreaValue);
+    displayConfirmation();
   })
 });
